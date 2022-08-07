@@ -1,19 +1,19 @@
-import invariant from "tiny-invariant";
+import invariant from "tiny-invariant"
 
 export function getEnv() {
-  invariant(process.env.ADMIN_EMAIL, "process.env.ADMIN_EMAIL not defined");
+    invariant(process.env.ADMIN_EMAIL, "process.env.ADMIN_EMAIL not defined")
 
-  return {
-    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
-  };
+    return {
+        ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    }
 }
 
-type ENV = ReturnType<typeof getEnv>;
+type ENV = ReturnType<typeof getEnv>
 
 // App puts these on
 declare global {
-  var ENV: ENV;
-  interface Window {
-    ENV: ENV;
-  }
+    var ENV: ENV
+    interface Window {
+        ENV: ENV
+    }
 }

@@ -1,1 +1,1 @@
-require("./scripts/diff");
+require("./scripts/diff")

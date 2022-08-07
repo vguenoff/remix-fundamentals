@@ -24,25 +24,25 @@ route module. That goes hand-in-hand with a `useLoaderData` hook in your
 component. For example:
 
 ```tsx
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 
 export const loader = async ({ request }) => {
-  const userId = await requireUserId(request);
-  const flights = await getUserFlights(userId);
-  return json({ flights }); // <-- send the data from your backend
-};
+    const userId = await requireUserId(request)
+    const flights = await getUserFlights(userId)
+    return json({ flights }) // <-- send the data from your backend
+}
 
 export default function FlightsRoute() {
-  const { flights } = useLoaderData(); // <-- get the data into your UI
-  return (
-    <div>
-      <h3>Flights</h3>
-      {flights.map((flight) => (
-        <div key={flight.id}>{flight.number}</div>
-      ))}
-    </div>
-  );
+    const { flights } = useLoaderData() // <-- get the data into your UI
+    return (
+        <div>
+            <h3>Flights</h3>
+            {flights.map((flight) => (
+                <div key={flight.id}>{flight.number}</div>
+            ))}
+        </div>
+    )
 }
 ```
 
@@ -55,11 +55,11 @@ One other tip is that the responsibility of the `loader` is to return a
 
 ```tsx
 return new Response(JSON.stringify(data), {
-  status: 200,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+    status: 200,
+    headers: {
+        "Content-Type": "application/json",
+    },
+})
 ```
 
 ## 💪 Exercise
@@ -69,17 +69,17 @@ start. Here are the blog posts we need to get from our server to the UI:
 
 ```tsx
 const data = {
-  posts: [
-    {
-      slug: "my-first-post",
-      title: "My First Post",
-    },
-    {
-      slug: "90s-mixtape",
-      title: "A Mixtape I Made Just For You",
-    },
-  ],
-};
+    posts: [
+        {
+            slug: "my-first-post",
+            title: "My First Post",
+        },
+        {
+            slug: "90s-mixtape",
+            title: "A Mixtape I Made Just For You",
+        },
+    ],
+}
 ```
 
 Put that in your loader and then get that from the loader to the component using
@@ -87,22 +87,22 @@ Put that in your loader and then get that from the loader to the component using
 
 ```tsx
 <main>
-  <h1>Posts</h1>
-  <ul>
-    {posts.map((post) => (
-      <li key={post.slug}>
-        <Link to={post.slug} className="text-blue-600 underline">
-          {post.title}
-        </Link>
-      </li>
-    ))}
-  </ul>
+    <h1>Posts</h1>
+    <ul>
+        {posts.map((post) => (
+            <li key={post.slug}>
+                <Link to={post.slug} className="text-blue-600 underline">
+                    {post.title}
+                </Link>
+            </li>
+        ))}
+    </ul>
 </main>
 ```
 
 ## 🗃 Files
 
-- `app/routes/posts/index.tsx`
+-   `app/routes/posts/index.tsx`
 
 ## 💯 Extra Credit
 
@@ -114,26 +114,26 @@ type which we can use to get nice auto-complete on the `loader` function
 arguments. Here's the same example as above but with types.
 
 ```tsx
-import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/node"
+import { json } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 
 export async function loader({ request }: LoaderArgs) {
-  const userId = await requireUserId(request);
-  const flights = await getUserFlights(userId);
-  return json({ flights }); // <-- send the data from your backend
+    const userId = await requireUserId(request)
+    const flights = await getUserFlights(userId)
+    return json({ flights }) // <-- send the data from your backend
 }
 
 export default function FlightsRoute() {
-  const { flights } = useLoaderData<typeof loader>(); // <-- get the data into your UI
-  return (
-    <div>
-      <h3>Flights</h3>
-      {flights.map((flight) => (
-        <div key={flight.id}>{flight.number}</div>
-      ))}
-    </div>
-  );
+    const { flights } = useLoaderData<typeof loader>() // <-- get the data into your UI
+    return (
+        <div>
+            <h3>Flights</h3>
+            {flights.map((flight) => (
+                <div key={flight.id}>{flight.number}</div>
+            ))}
+        </div>
+    )
 }
 ```
 
@@ -143,7 +143,7 @@ future).
 
 **Files**:
 
-- `app/routes/posts/index.tsx`
+-   `app/routes/posts/index.tsx`
 
 ### 2. Switch to prisma for data
 
@@ -161,8 +161,8 @@ We'll be adding more functions to that module soon.
 
 **Files**:
 
-- `app/models/post.server.ts`
-- `app/routes/posts/index.tsx`
+-   `app/models/post.server.ts`
+-   `app/routes/posts/index.tsx`
 
 ### 3. Optimize data loading
 
@@ -178,7 +178,7 @@ to more accurately reflect what it's doing.
 Here's an example of what we can do with prisma's querying API:
 
 ```tsx
-prisma.dogo.findMany({ select: { id: true, name: true } });
+prisma.dogo.findMany({ select: { id: true, name: true } })
 ```
 
 See if you can reduce the amount of data over the wire when you navigate to the
@@ -186,8 +186,8 @@ post listing page.
 
 **Files**:
 
-- `app/models/post.server.ts`
-- `app/routes/posts/index.tsx`
+-   `app/models/post.server.ts`
+-   `app/routes/posts/index.tsx`
 
 ## 🦉 Elaboration and Feedback
 

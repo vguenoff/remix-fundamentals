@@ -1,11 +1,11 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet } from "@remix-run/react"
 
 export default function () {
-  return <Outlet />;
+    return <Outlet />
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+    console.error(error)
 
-  return <div>An unexpected error occurred: {error.message}</div>;
+    return <div>An unexpected error occurred: {error.message}</div>
 }

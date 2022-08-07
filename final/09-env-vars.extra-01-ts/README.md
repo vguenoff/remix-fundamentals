@@ -18,11 +18,11 @@ components which will be hydrated on the client. So this won't work:
 
 ```tsx
 function DiscordConnectionRoute() {
-  return (
-    <a href={createDiscordUrl(process.env.DISCORD_CLIENT_ID)}>
-      Connect Discord
-    </a>
-  );
+    return (
+        <a href={createDiscordUrl(process.env.DISCORD_CLIENT_ID)}>
+            Connect Discord
+        </a>
+    )
 }
 ```
 
@@ -35,19 +35,19 @@ that environment variables are no different from any other data our server can
 send to our client. We can send it via the `loader`!
 
 ```tsx
-import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/node"
+import { json } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 
 export async function loader({ request }: LoaderArgs) {
-  return json({
-    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-  });
+    return json({
+        DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    })
 }
 
 function DiscordConnectionRoute() {
-  const { DISCORD_CLIENT_ID } = useLoaderData<typeof loader>();
-  return <a href={createDiscordUrl(DISCORD_CLIENT_ID)}>Connect Discord</a>;
+    const { DISCORD_CLIENT_ID } = useLoaderData<typeof loader>()
+    return <a href={createDiscordUrl(DISCORD_CLIENT_ID)}>Connect Discord</a>
 }
 ```
 
@@ -59,34 +59,34 @@ That's right, put it on `window`! So what you can do is add a `script` tag that
 sets a variable on the window. So check this out:
 
 ```tsx filename=app/root.tsx
-import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/node"
+import { json } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 
 export async function loader({ request }: LoaderArgs) {
-  return json({
-    ENV: {
-      DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-    },
-  });
+    return json({
+        ENV: {
+            DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+        },
+    })
 }
 
 export default function App() {
-  const data = useLoaderData<typeof loader>();
+    const data = useLoaderData<typeof loader>()
 
-  return (
-    <html>
-      {/* ... */}
-      <body>
-        {/* ... */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
-          }}
-        />
-      </body>
-    </html>
-  );
+    return (
+        <html>
+            {/* ... */}
+            <body>
+                {/* ... */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
+                    }}
+                />
+            </body>
+        </html>
+    )
 }
 ```
 
@@ -97,8 +97,8 @@ Node.js:
 
 ```tsx
 global.ENV = {
-  DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
-};
+    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+}
 ```
 
 Sweet! And now you can use that variable in any context and it will be globally
@@ -107,7 +107,7 @@ client):
 
 ```tsx
 function DiscordConnectionRoute() {
-  return <a href={createDiscordUrl(ENV.DISCORD_CLIENT_ID)}>Connect Discord</a>;
+    return <a href={createDiscordUrl(ENV.DISCORD_CLIENT_ID)}>Connect Discord</a>
 }
 ```
 
@@ -136,9 +136,9 @@ and the backend:
 
 ```ts
 export function getEnv() {
-  return {
-    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
-  };
+    return {
+        ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    }
 }
 ```
 
@@ -146,9 +146,9 @@ Now you can use that to set the variables to both the server and the client.
 
 ## 🗃 Files
 
-- `app/env.server.ts` <-- you create this
-- `app/entry.server.tsx`
-- `app/root.tsx`
+-   `app/env.server.ts` <-- you create this
+-   `app/entry.server.tsx`
+-   `app/root.tsx`
 
 ## 💯 Extra Credit
 
@@ -168,10 +168,10 @@ give it to you:
 ```ts
 // App puts these on
 declare global {
-  var ENV: ENV;
-  interface Window {
-    ENV: ENV;
-  }
+    var ENV: ENV
+    interface Window {
+        ENV: ENV
+    }
 }
 ```
 
@@ -180,7 +180,7 @@ variables.
 
 **Files**:
 
-- `app/env.server.tsx`
+-   `app/env.server.tsx`
 
 ## 🦉 Elaboration and Feedback
 

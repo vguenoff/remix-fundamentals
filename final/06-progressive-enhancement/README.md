@@ -38,21 +38,21 @@ JavaScript. We can put the loading indicator closer to where the user's
 attention is already at the start of the transition:
 
 ```tsx app/routes/dogo/new.tsx
-import { useTransition } from "@remix-run/react";
+import { useTransition } from "@remix-run/react"
 
 export default function NewDogoRoute() {
-  const transition = useTransition();
-  const isSubmitting = Boolean(transition.submission);
-  return (
-    <Form method="post">
-      <label>
-        Name: <input name="dogo-name" />
-      </label>
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Creating Dogo..." : "Create Dogo"}
-      </button>
-    </Form>
-  );
+    const transition = useTransition()
+    const isSubmitting = Boolean(transition.submission)
+    return (
+        <Form method="post">
+            <label>
+                Name: <input name="dogo-name" />
+            </label>
+            <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Creating Dogo..." : "Create Dogo"}
+            </button>
+        </Form>
+    )
 }
 ```
 
@@ -113,7 +113,7 @@ disable the button.
 
 ## 🗃 Files
 
-- `app/routes/posts/admin/new.tsx`
+-   `app/routes/posts/admin/new.tsx`
 
 ## 💯 Extra Credit
 

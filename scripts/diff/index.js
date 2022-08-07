@@ -1,2 +1,2 @@
-require("esbuild-register");
-module.exports = require("./diff");
+require("esbuild-register")
+module.exports = require("./diff")

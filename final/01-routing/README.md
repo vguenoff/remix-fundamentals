@@ -24,12 +24,12 @@ UI the file represents:
 
 ```tsx filename=app/routes/example.tsx
 export default function ExampleRoute() {
-  return (
-    <div>
-      <h1>Example</h1>
-      <p>I am a good example</p>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Example</h1>
+            <p>I am a good example</p>
+        </div>
+    )
 }
 ```
 
@@ -66,9 +66,9 @@ Here's a nice and styled link for you to use if you like:
 
 ```tsx
 <div className="mx-auto mt-16 max-w-7xl text-center">
-  <Link to="/posts" className="text-xl text-blue-600 underline">
-    Blog Posts
-  </Link>
+    <Link to="/posts" className="text-xl text-blue-600 underline">
+        Blog Posts
+    </Link>
 </div>
 ```
 
@@ -76,14 +76,14 @@ And here's what you can use as the default export of the posts route:
 
 ```tsx
 <main>
-  <h1>Posts</h1>
+    <h1>Posts</h1>
 </main>
 ```
 
 ## 🗃 Files
 
-- `app/routes/index.tsx`
-- `app/routes/posts/index.tsx` <-- you create this file
+-   `app/routes/index.tsx`
+-   `app/routes/posts/index.tsx` <-- you create this file
 
 ## 🦉 Elaboration and Feedback
 

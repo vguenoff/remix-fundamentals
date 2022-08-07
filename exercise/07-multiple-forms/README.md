@@ -8,14 +8,14 @@ Checkout this form:
 
 ```tsx
 <form method="post">
-  <label>
-    Username: <input name="username" />
-  </label>
-  <label>
-    Password: <input name="password" type="password" />
-  </label>
-  <button type="submit">Login</button>
-  <button type="submit">Sign Up</button>
+    <label>
+        Username: <input name="username" />
+    </label>
+    <label>
+        Password: <input name="password" type="password" />
+    </label>
+    <button type="submit">Login</button>
+    <button type="submit">Sign Up</button>
 </form>
 ```
 
@@ -43,8 +43,8 @@ In a Remix context, it's important for you to know also that the
 know which button was used to submit the form on the client as well:
 
 ```tsx
-const transition = useTransition();
-const isLoggingIn = transition.submission?.formData.get("intent") === "login";
+const transition = useTransition()
+const isLoggingIn = transition.submission?.formData.get("intent") === "login"
 ```
 
 ## 💪 Exercise
@@ -69,7 +69,7 @@ git diff --no-index final/06-progressive-enhancement.extra-01-prefetch/app/route
 
 ## 🗃 Files
 
-- `app/routes/posts/admin/$slug.tsx`
+-   `app/routes/posts/admin/$slug.tsx`
 
 ## 🦉 Elaboration and Feedback
 

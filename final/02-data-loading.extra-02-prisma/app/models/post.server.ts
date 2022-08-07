@@ -1,5 +1,5 @@
-import { prisma } from "~/db.server";
+import { prisma } from "~/db.server"
 
 export async function getPosts() {
-  return prisma.post.findMany();
+    return prisma.post.findMany()
 }

@@ -1,1 +1,1 @@
-require("./scripts/dev");
+require("./scripts/dev")

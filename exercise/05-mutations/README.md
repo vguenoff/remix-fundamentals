@@ -45,27 +45,27 @@ doing their mutating.
 Here's a simple example of how to use the conventional API for this:
 
 ```tsx app/routes/dogo/new.tsx
-import type { ActionArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form } from "@remix-run/react";
-import { createNewDogo } from "~/models/dogo.server";
+import type { ActionArgs } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
+import { Form } from "@remix-run/react"
+import { createNewDogo } from "~/models/dogo.server"
 
 export async function action({ request, params }: ActionArgs) {
-  const formData = await request.formData(); // <-- 📜 learn more https://mdn.io/formData
-  const name = formData.get("dogo-name");
-  const newDogo = await createNewDogo({ name });
-  return redirect(`/dogo/${newDogo.id}`);
+    const formData = await request.formData() // <-- 📜 learn more https://mdn.io/formData
+    const name = formData.get("dogo-name")
+    const newDogo = await createNewDogo({ name })
+    return redirect(`/dogo/${newDogo.id}`)
 }
 
 export default function NewDogoRoute() {
-  return (
-    <Form method="post">
-      <label>
-        Name: <input name="dogo-name" />
-      </label>
-      <button type="submit">Create Dogo</button>
-    </Form>
-  );
+    return (
+        <Form method="post">
+            <label>
+                Name: <input name="dogo-name" />
+            </label>
+            <button type="submit">Create Dogo</button>
+        </Form>
+    )
 }
 ```
 
@@ -89,8 +89,8 @@ You'll need to add the `action` and create a `createPost` function in your
 
 ## 🗃 Files
 
-- `app/models/post.server.ts`
-- `app/routes/posts/admin/new.tsx`
+-   `app/models/post.server.ts`
+-   `app/routes/posts/admin/new.tsx`
 
 ## 💯 Extra Credit
 
@@ -103,36 +103,38 @@ hook called `useActionData`. If we add error handling to our earlier example
 it'd be something like this:
 
 ```tsx app/routes/dogo/new.tsx
-import type { ActionArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { useActionData } from "@remix-run/react";
-import { Form } from "@remix-run/react";
-import { createNewDogo } from "~/models/dogo.server";
+import type { ActionArgs } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
+import { useActionData } from "@remix-run/react"
+import { Form } from "@remix-run/react"
+import { createNewDogo } from "~/models/dogo.server"
 
 export async function action({ request, params }: ActionArgs) {
-  const formData = await request.formData(); // <-- 📜 learn more https://mdn.io/formData
-  const name = formData.get("dogo-name");
-  if (typeof name !== "string" || !name) {
-    return json({ name: "Dogo name is required" });
-  }
-  if (name.length < 2 || name.length > 12) {
-    return json({ name: "Dogo name must be between 2 and 12 characters" });
-  }
-  const newDogo = await createNewDogo({ name });
-  return redirect(`/dogo/${newDogo.id}`);
+    const formData = await request.formData() // <-- 📜 learn more https://mdn.io/formData
+    const name = formData.get("dogo-name")
+    if (typeof name !== "string" || !name) {
+        return json({ name: "Dogo name is required" })
+    }
+    if (name.length < 2 || name.length > 12) {
+        return json({ name: "Dogo name must be between 2 and 12 characters" })
+    }
+    const newDogo = await createNewDogo({ name })
+    return redirect(`/dogo/${newDogo.id}`)
 }
 
 export default function NewDogoRoute() {
-  const errors = useActionData();
-  return (
-    <Form method="post">
-      <label>
-        Name: <input name="dogo-name" />
-        {errors?.name ? <em className="text-red-600">{errors.name}</em> : null}
-      </label>
-      <button type="submit">Create Dogo</button>
-    </Form>
-  );
+    const errors = useActionData()
+    return (
+        <Form method="post">
+            <label>
+                Name: <input name="dogo-name" />
+                {errors?.name ? (
+                    <em className="text-red-600">{errors.name}</em>
+                ) : null}
+            </label>
+            <button type="submit">Create Dogo</button>
+        </Form>
+    )
 }
 ```
 

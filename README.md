@@ -20,16 +20,16 @@
 
 ## Prerequisites
 
-- Some
-  [experience with JavaScript](https://kentcdodds.com/blog/javascript-to-know-for-react)
-- Some [experience with React](https://kcd.im/beginner-react)
-- Some [experience with Node.js](https://nodejs.dev/learn)
+-   Some
+    [experience with JavaScript](https://kentcdodds.com/blog/javascript-to-know-for-react)
+-   Some [experience with React](https://kcd.im/beginner-react)
+-   Some [experience with Node.js](https://nodejs.dev/learn)
 
 ## System Requirements
 
-- [git][git] v2.13 or greater
-- [NodeJS][node] `14 || 16 || 18`
-- [npm][npm] v8 or greater
+-   [git][git] v2.13 or greater
+-   [NodeJS][node] `14 || 16 || 18`
+-   [npm][npm] v8 or greater
 
 All of these must be available in your `PATH`. To verify things are set up
 properly, you can run this:

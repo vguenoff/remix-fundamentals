@@ -51,27 +51,27 @@ param. In the `$tweetId.tsx` file, you can access the params in the `loader` via
 the loader's arguments:
 
 ```tsx
-import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { getTweet } from "~/models/tweets";
+import type { LoaderArgs } from "@remix-run/node"
+import { json } from "@remix-run/node"
+import { getTweet } from "~/models/tweets"
 
 export async function loader({ params }: LoaderArgs) {
-  return json({
-    tweet: await getTweet(params.username, params.tweetId),
-  });
+    return json({
+        tweet: await getTweet(params.username, params.tweetId),
+    })
 }
 ```
 
 You can also access the params in your components via the `useParams` hook:
 
 ```tsx
-import { useLoaderData, useParams } from "@remix-run/react";
+import { useLoaderData, useParams } from "@remix-run/react"
 
 export default function Tweet() {
-  const { username, tweetId } = useParams();
-  const data = useLoaderData<typeof loader>();
+    const { username, tweetId } = useParams()
+    const data = useLoaderData<typeof loader>()
 
-  return <div>{/* render tweet */}</div>;
+    return <div>{/* render tweet */}</div>
 }
 ```
 
@@ -91,14 +91,14 @@ From there, your default export component can be something simple like this:
 
 ```tsx
 <main className="mx-auto max-w-4xl">
-  <h1 className="my-6 border-b-2 text-center text-3xl">{post.title}</h1>
+    <h1 className="my-6 border-b-2 text-center text-3xl">{post.title}</h1>
 </main>
 ```
 
 ## 🗃 Files
 
-- `app/models/post.server.ts`
-- `app/routes/posts/$slug.tsx` <-- you create this file
+-   `app/models/post.server.ts`
+-   `app/routes/posts/$slug.tsx` <-- you create this file
 
 ## 💯 Extra Credit
 
@@ -115,7 +115,7 @@ how to use it:
 
 ```tsx
 // import marked
-import { marked } from "marked";
+import { marked } from "marked"
 
 // use it with some HTML
 
@@ -123,12 +123,12 @@ const html = marked(`
 # Hello world
 
 This is some **bold** text!
-`);
+`)
 
 // use that HTML in a React component
 
 function MyComponent({ html }: { html: string }) {
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+    return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 ```
 
@@ -145,8 +145,8 @@ use this escape hatch, so no worries!
 
 **Files**:
 
-- `app/models/post.server.ts`
-- `app/routes/posts/$slug.tsx`
+-   `app/models/post.server.ts`
+-   `app/routes/posts/$slug.tsx`
 
 ### 2. Help TypeScript help us
 
@@ -158,8 +158,8 @@ TypeScript doesn't understand that convention. So we need to help it a bit. You
 can use regular type guards like this:
 
 ```ts
-const { slug } = params;
-if (!slug) throw new Error("This should be impossible");
+const { slug } = params
+if (!slug) throw new Error("This should be impossible")
 // now slug is a string only
 ```
 
@@ -173,8 +173,8 @@ database. We'll deal with a proper `404` status code and error page later.
 
 **Files**:
 
-- `app/models/post.server.ts`
-- `app/routes/posts/$slug.tsx`
+-   `app/models/post.server.ts`
+-   `app/routes/posts/$slug.tsx`
 
 ## 🦉 Elaboration and Feedback
 

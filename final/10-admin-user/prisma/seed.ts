@@ -1,42 +1,42 @@
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client"
+import bcrypt from "bcryptjs"
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 async function seed() {
-  const email = "kody@remix.run";
+    const email = "kody@remix.run"
 
-  // cleanup the existing database
-  await prisma.user.delete({ where: { email } }).catch(() => {
-    // no worries if it doesn't exist yet
-  });
+    // cleanup the existing database
+    await prisma.user.delete({ where: { email } }).catch(() => {
+        // no worries if it doesn't exist yet
+    })
 
-  const hashedPassword = await bcrypt.hash("kodylovesyou", 10);
-  await prisma.user.create({
-    data: {
-      email,
-      password: {
-        create: {
-          hash: hashedPassword,
+    const hashedPassword = await bcrypt.hash("kodylovesyou", 10)
+    await prisma.user.create({
+        data: {
+            email,
+            password: {
+                create: {
+                    hash: hashedPassword,
+                },
+            },
         },
-      },
-    },
-  });
+    })
 
-  const posts = [
-    {
-      slug: "my-first-post",
-      title: "My First Post",
-      markdown: `
+    const posts = [
+        {
+            slug: "my-first-post",
+            title: "My First Post",
+            markdown: `
 # This is my first post
 
 Isn't it great?
       `.trim(),
-    },
-    {
-      slug: "90s-mixtape",
-      title: "A Mixtape I Made Just For You",
-      markdown: `
+        },
+        {
+            slug: "90s-mixtape",
+            title: "A Mixtape I Made Just For You",
+            markdown: `
 # 90s Mixtape
 
 - I wish (Skee-Lo)
@@ -57,25 +57,25 @@ Isn't it great?
 - Santa Monica (Everclear)
 - C'mon N' Ride it (Quad City DJ's)
       `.trim(),
-    },
-  ];
+        },
+    ]
 
-  for (const post of posts) {
-    await prisma.post.upsert({
-      where: { slug: post.slug },
-      update: post,
-      create: post,
-    });
-  }
+    for (const post of posts) {
+        await prisma.post.upsert({
+            where: { slug: post.slug },
+            update: post,
+            create: post,
+        })
+    }
 
-  console.log(`Database has been seeded. 🌱`);
+    console.log(`Database has been seeded. 🌱`)
 }
 
 seed()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+    .catch((e) => {
+        console.error(e)
+        process.exit(1)
+    })
+    .finally(async () => {
+        await prisma.$disconnect()
+    })

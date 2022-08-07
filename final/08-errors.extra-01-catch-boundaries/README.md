@@ -19,14 +19,14 @@ render this instead!" And we communicate this via another export called
 
 ```tsx
 export default function UhOhRoute() {
-  // Oh no! "candy" is not defined! Should've used TypeScript 🙃
-  return <div>{candy.eat}</div>;
+    // Oh no! "candy" is not defined! Should've used TypeScript 🙃
+    return <div>{candy.eat}</div>
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+    console.error(error)
 
-  return <div>An unexpected error occurred: {error.message}</div>;
+    return <div>An unexpected error occurred: {error.message}</div>
 }
 ```
 
@@ -45,25 +45,25 @@ you can `throw` a `Response` in your `loader` or `action`. When this happens,
 Remix will catch that and render the nearest `CatchBoundary` component.
 
 ```tsx
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/node"
 
 export async function loader({ params }: LoaderArgs) {
-  const dogo = await getDogo(params.dogoId);
-  if (!dogo) {
-    throw new Response("not found", { status: 404 });
-  }
-  // ... etc...
+    const dogo = await getDogo(params.dogoId)
+    if (!dogo) {
+        throw new Response("not found", { status: 404 })
+    }
+    // ... etc...
 }
 
 export function CatchBoundary() {
-  const caught = useCatch();
+    const caught = useCatch()
 
-  // "caught" is the response that was through
-  if (caught.status === 404) {
-    return <div>Not found</div>;
-  }
+    // "caught" is the response that was through
+    if (caught.status === 404) {
+        return <div>Not found</div>
+    }
 
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+    throw new Error(`Unexpected caught response with status: ${caught.status}`)
 }
 ```
 
@@ -72,7 +72,7 @@ where a user's not supposed to be somewhere at all. We'll get into doing this
 later when we get into auth:
 
 ```tsx
-throw redirect("/login");
+throw redirect("/login")
 ```
 
 ## 💪 Exercise
@@ -88,9 +88,9 @@ We're doing that because we don't need a parent to wrap that UI, so we're
 getting the default which is effectively:
 
 ```tsx
-import { Outlet } from "@remix-run/react";
+import { Outlet } from "@remix-run/react"
 export default function HiddenParentRoute() {
-  return <Outlet />;
+    return <Outlet />
 }
 ```
 
@@ -100,9 +100,9 @@ So, if we want to add an error boundary to handle all unhandled errors under
 
 ## 🗃 Files
 
-- `app/routes/posts.tsx` <-- you'll create this file
-- `app/routes/posts/$slug.tsx`
-- `app/routes/posts/admin/$slug.tsx`
+-   `app/routes/posts.tsx` <-- you'll create this file
+-   `app/routes/posts/$slug.tsx`
+-   `app/routes/posts/admin/$slug.tsx`
 
 ## 💯 Extra Credit
 
@@ -116,13 +116,13 @@ Add a `CatchBoundary` to both `/app/routes/posts/$slug.tsx` and
 `/app/routes/posts/admin/$slug.tsx`. Each has the following code:
 
 ```ts
-invariant(post, `Post not found: ${params.slug}`);
+invariant(post, `Post not found: ${params.slug}`)
 ```
 
 Swap that with:
 
 ```ts
-throw new Response("not found", { status: 404 });
+throw new Response("not found", { status: 404 })
 ```
 
 The `CatchBoundary` should be looking for caught responses that are status `404`
@@ -130,8 +130,8 @@ and display a helpful error message in that case.
 
 **Files**:
 
-- `app/routes/posts/$slug.tsx`
-- `app/routes/posts/admin/$slug.tsx`
+-   `app/routes/posts/$slug.tsx`
+-   `app/routes/posts/admin/$slug.tsx`
 
 ## 🦉 Elaboration and Feedback
 

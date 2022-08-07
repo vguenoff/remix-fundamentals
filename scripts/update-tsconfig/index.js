@@ -1,2 +1,2 @@
-require("esbuild-register");
-module.exports = require("./update-tsconfig");
+require("esbuild-register")
+module.exports = require("./update-tsconfig")

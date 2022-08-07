@@ -40,17 +40,17 @@ continue to execute. The `throw` stops the execution.
 So, here's a simple example:
 
 ```tsx
-import type { LoaderArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
 
 export async function loader({ request }: LoaderArgs) {
-  const userIsAllowed = await userHasPermission(request, "emails.write");
-  if (!userIsAllowed) {
-    throw redirect("/login");
-  }
-  // otherwise, we're good... keep going...
-  return json({});
+    const userIsAllowed = await userHasPermission(request, "emails.write")
+    if (!userIsAllowed) {
+        throw redirect("/login")
+    }
+    // otherwise, we're good... keep going...
+    return json({})
 }
 ```
 
@@ -59,15 +59,15 @@ abstract that bit into a function:
 
 ```tsx
 async function requireUserPermission(request: Request, permission: string) {
-  const userIsAllowed = await userHasPermission(request, permission);
-  if (!userIsAllowed) {
-    throw redirect("/login");
-  }
+    const userIsAllowed = await userHasPermission(request, permission)
+    if (!userIsAllowed) {
+        throw redirect("/login")
+    }
 }
 
 export async function loader({ request }: LoaderArgs) {
-  await requireUserPermission("emails.write");
-  return json({});
+    await requireUserPermission("emails.write")
+    return json({})
 }
 ```
 
@@ -85,10 +85,10 @@ NOTE, the `ADMIN_EMAIL` is set in the `.env` file as `kody@remix.run`. The
 
 ## 🗃 Files
 
-- `app/session.server.ts`
-- `app/routes/posts/admin.tsx`
-- `app/routes/posts/admin/index.tsx`
-- `app/routes/posts/admin/$slug.tsx`
+-   `app/session.server.ts`
+-   `app/routes/posts/admin.tsx`
+-   `app/routes/posts/admin/index.tsx`
+-   `app/routes/posts/admin/$slug.tsx`
 
 ## 💯 Extra Credit
 
@@ -105,9 +105,9 @@ the posts `app/routes/posts/$slug.tsx` if we're signed in.
 
 **Files**:
 
-- `app/utils.ts`
-- `app/routes/posts/index.tsx`
-- `app/routes/posts/$slug.tsx`
+-   `app/utils.ts`
+-   `app/routes/posts/index.tsx`
+-   `app/routes/posts/$slug.tsx`
 
 ## 🦉 Elaboration and Feedback
 

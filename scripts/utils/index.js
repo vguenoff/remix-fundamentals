@@ -1,2 +1,2 @@
-require("esbuild-register");
-module.exports = require("./utils");
+require("esbuild-register")
+module.exports = require("./utils")
