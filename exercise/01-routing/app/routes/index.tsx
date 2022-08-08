@@ -4,6 +4,7 @@ import { useOptionalUser } from "~/utils"
 
 export default function Index() {
     const user = useOptionalUser()
+
     return (
         <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
             <div className="relative sm:pb-16 sm:pt-8">
@@ -60,6 +61,14 @@ export default function Index() {
                 </div>
 
                 {/* 💿 Add a link to /posts here */}
+                <div className="mx-auto mt-16 max-w-7xl text-center">
+                    <Link
+                        to="/posts"
+                        className="text-xl text-blue-600 underline"
+                    >
+                        Blog Posts
+                    </Link>
+                </div>
 
                 <div className="mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8">
                     <div className="mt-6 flex flex-wrap justify-center gap-8">
